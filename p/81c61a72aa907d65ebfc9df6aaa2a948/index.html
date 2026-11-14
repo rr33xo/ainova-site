@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Johnson's HVAC Service | Heating, cooling and air quality</title>
+  <meta name="description" content="Heating and air conditioning repair, tune-ups and new systems from Johnson's HVAC Service. Book your visit online in about a minute.">
+  <meta name="theme-color" content="#0a1f3c">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="preview-lock.css">
+</head>
+<body>
+  <a class="skip" href="#book">Skip to booking</a>
+  <div class="topbar">
+    <div class="wrap topbar__in">
+      <span>Heating · Cooling · Air quality</span>
+      <span class="topbar__right">Book online any time, day or night</span>
+    </div>
+  </div>
+
+  <header class="header" data-header>
+    <div class="wrap header__in">
+      <a class="brand" href="#top" aria-label="Johnson's HVAC Service, home">
+        <img src="logo.svg" alt="" width="40" height="40">
+        <span class="brand__name">Johnson's<small>HVAC Service</small></span>
+      </a>
+      <nav class="nav" data-nav aria-label="Main">
+        <a href="#services">Services</a>
+        <a href="#how">How it works</a>
+        <a href="#tips">Quick fixes</a>
+        <a href="#tuneups">Tune-ups</a>
+        <a href="#about">About</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="header__cta">
+        <a class="btn btn--ghost" data-phone hidden>Call</a>
+        <a class="btn btn--hot" href="#book" data-book>Book a visit</a>
+        <button class="menu" type="button" aria-expanded="false" aria-controls="mobile-nav" data-menu><span></span><span></span><span></span><span class="sr">Menu</span></button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" data-mobile-nav hidden aria-label="Mobile">
+      <a href="#services">Services</a>
+      <a href="#how">How it works</a>
+      <a href="#tips">Quick fixes</a>
+      <a href="#tuneups">Tune-ups</a>
+      <a href="#about">About</a>
+      <a href="#faq">FAQ</a>
+      <a href="#book" class="btn btn--hot" data-book>Book a visit</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <img class="hero__img" src="hero.jpg" alt="A warm, comfortable living room with a fireplace">
+      <div class="hero__shade"></div>
+      <div class="wrap hero__in">
+        <p class="eyebrow"><span class="dot"></span> Now booking heating and cooling visits</p>
+        <h1>Too hot. Too cold.<br><span class="grad">Johnson's has you covered.</span></h1>
+        <p class="hero__lead">Repairs, tune-ups and new systems for your home or business. Tell us what's going on, pick your arrival time, and you're booked in about a minute.</p>
+        <div class="hero__picker" role="group" aria-label="What do you need help with?">
+          <p class="hero__ask">What's going on?</p>
+          <div class="chips">
+            <button type="button" class="chip chip--cool" data-start="cooling"><span aria-hidden="true">❄️</span> AC isn't cooling</button>
+            <button type="button" class="chip chip--hot" data-start="heating"><span aria-hidden="true">🔥</span> Heat isn't working</button>
+            <button type="button" class="chip" data-start="tuneup"><span aria-hidden="true">🛠️</span> Tune-up</button>
+            <button type="button" class="chip" data-start="estimate"><span aria-hidden="true">🏠</span> New system</button>
+          </div>
+        </div>
+        <ul class="hero__facts">
+          <li>Pick your own arrival time</li>
+          <li>Instant email confirmation</li>
+          <li>Cancel online if plans change</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="wrap">
+        <div class="head">
+          <p class="kicker">Services</p>
+          <h2>Everything that keeps your place comfortable</h2>
+          <p class="lead">Heating, cooling and the air in between. Choose a service to book it.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <img src="cooling.jpg" alt="A cool, bright living room" loading="lazy">
+            <div class="card__body">
+              <span class="tag tag--cool">Cooling</span>
+              <h3>AC repair and installs</h3>
+              <p>Warm air, no air, ice on the lines, or a unit that won't shut off. We find the cause and fix it, or help you choose a new system.</p>
+              <button type="button" class="link-btn" data-start="cooling">Book AC service →</button>
+            </div>
+          </article>
+          <article class="card">
+            <img src="furnace.jpg" alt="Replacing the air filter on a home furnace" loading="lazy">
+            <div class="card__body">
+              <span class="tag tag--hot">Heating</span>
+              <h3>Furnace and heating repair</h3>
+              <p>No heat, short cycling, odd noises or a pilot that won't stay lit. Get your heat back and running safely.</p>
+              <button type="button" class="link-btn" data-start="heating">Book heating service →</button>
+            </div>
+          </article>
+          <article class="card">
+            <img src="heatpump.jpg" alt="An outdoor heat pump unit" loading="lazy">
+            <div class="card__body">
+              <span class="tag">Heat pumps</span>
+              <h3>Heat pumps</h3>
+              <p>One system for heating and cooling. Repairs, check-ups and help deciding if a heat pump is right for your home.</p>
+              <button type="button" class="link-btn" data-start="estimate">Ask about heat pumps →</button>
+            </div>
+          </article>
+          <article class="card">
+            <img src="minisplit.jpg" alt="A ductless mini-split outdoor unit beside a house" loading="lazy">
+            <div class="card__body">
+              <span class="tag">Ductless</span>
+              <h3>Ductless mini-splits</h3>
+              <p>Comfort for rooms the main system can't reach, like additions, garages and bonus rooms.</p>
+              <button type="button" class="link-btn" data-start="estimate">Get an estimate →</button>
+            </div>
+          </article>
+          <article class="card">
+            <img src="calm.jpg" alt="A quiet chair by a bright window" loading="lazy">
+            <div class="card__body">
+              <span class="tag">Maintenance</span>
+              <h3>Seasonal tune-ups</h3>
+              <p>A full check before summer and before winter, so small problems get caught before they turn into breakdowns.</p>
+              <button type="button" class="link-btn" data-start="tuneup">Book a tune-up →</button>
+            </div>
+          </article>
+          <article class="card">
+            <img src="thermostat.jpg" alt="A smart thermostat on a wall" loading="lazy">
+            <div class="card__body">
+              <span class="tag">Air quality</span>
+              <h3>Thermostats, ducts and clean air</h3>
+              <p>Smart thermostat installs, filters, duct problems and rooms that are always too hot or too cold.</p>
+              <button type="button" class="link-btn" data-start="airq">Book this service →</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--dark" id="book">
+      <div class="wrap book">
+        <div class="book__intro">
+          <p class="kicker kicker--light">Online booking</p>
+          <h2>Book with Johnson's booking assistant</h2>
+          <p>Answer a few quick questions and pick a time that works for you. You'll get a confirmation by email right away.</p>
+          <ol class="book__steps">
+            <li><b>Tell us what's wrong.</b> One tap.</li>
+            <li><b>Pick your arrival time.</b> Only open times show.</li>
+            <li><b>Add your details.</b> Then you're booked.</li>
+          </ol>
+          <p class="book__safety"><b>Smell gas?</b> Leave the building first and call your gas company or 911 from outside. Don't book online for a gas leak.</p>
+        </div>
+        <div class="agent" data-agent aria-live="polite">
+          <div class="agent__head">
+            <img src="logo.svg" alt="" width="36" height="36">
+            <div><b>Johnson's booking assistant</b><span><i class="live"></i> Ready to book</span></div>
+            <button type="button" class="agent__restart" data-restart hidden>Start over</button>
+          </div>
+          <div class="agent__log" data-log></div>
+          <div class="agent__input" data-input></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="wrap">
+        <div class="head">
+          <p class="kicker">How it works</p>
+          <h2>From "it's broken" to "ahh, that's better"</h2>
+        </div>
+        <div class="steps">
+          <div class="step"><span class="step__n">1</span><h3>Book online</h3><p>Tell the booking assistant what's going on and choose an arrival time.</p></div>
+          <div class="step"><span class="step__n">2</span><h3>We confirm</h3><p>You get an email with your booking number, and Joey reviews the details before the visit.</p></div>
+          <div class="step"><span class="step__n">3</span><h3>We diagnose</h3><p>Joey checks your system and explains what's wrong in plain words before any work starts.</p></div>
+          <div class="step"><span class="step__n">4</span><h3>You're comfortable</h3><p>Your system is fixed or tuned up, and you get tips to keep it running well.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--soft" id="tips">
+      <div class="wrap two">
+        <div>
+          <p class="kicker">Quick fixes</p>
+          <h2>Try these before you book</h2>
+          <p class="lead">A few common problems have simple fixes. If none of these help, book a visit and we'll take it from there.</p>
+          <button type="button" class="btn btn--hot" data-start="repair">Still not working? Book a repair</button>
+        </div>
+        <div class="accordion">
+          <details open><summary>Check the thermostat</summary><p>Make sure it's set to Heat or Cool, the temperature is set past the room temperature, and the batteries aren't dead.</p></details>
+          <details><summary>Look at the breaker</summary><p>Find the breakers for your furnace or air handler and the outdoor unit. If one is tripped, reset it once. If it trips again, leave it off and book a visit.</p></details>
+          <details><summary>Change a dirty filter</summary><p>A clogged filter can cut airflow and even shut your system down. Most filters need changing every one to three months.</p></details>
+          <details><summary>Clear the outdoor unit</summary><p>Leaves, snow or plants around the outdoor unit block airflow. Keep about two feet of space around it.</p></details>
+          <details><summary>Open the vents</summary><p>Closed or blocked vents can make rooms uneven and strain your system. Keep furniture and rugs off them.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tuneups">
+      <div class="wrap two two--reverse">
+        <img class="round-img" src="heatpump.jpg" alt="An outdoor heat pump unit on a patio" loading="lazy">
+        <div>
+          <p class="kicker">Tune-ups</p>
+          <h2>Twice a year keeps breakdowns away</h2>
+          <p class="lead">A tune-up before summer and another before winter helps your system run efficiently and catches problems early.</p>
+          <ul class="checks">
+            <li>Check and clean key parts</li>
+            <li>Test safety controls and electrical connections</li>
+            <li>Check refrigerant lines and drains</li>
+            <li>Replace or check your filter</li>
+            <li>Make sure your thermostat is reading right</li>
+          </ul>
+          <button type="button" class="btn btn--dark" data-start="tuneup">Book a tune-up</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="wrap about">
+        <div class="about__badge" aria-hidden="true">JJ</div>
+        <div>
+          <p class="kicker">Meet your tech</p>
+          <h2>Hi, I'm Joey Johnson.</h2>
+          <p class="lead">Johnson's HVAC Service is my company. When you book, you get me: I look over every booking myself, show up in your arrival window, and explain what I find in plain words before any work starts.</p>
+          <button type="button" class="btn btn--dark" data-start="repair">Book a visit with Joey</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--soft" id="faq">
+      <div class="wrap narrow">
+        <div class="head head--center">
+          <p class="kicker">FAQ</p>
+          <h2>Good questions</h2>
+        </div>
+        <div class="accordion">
+          <details><summary>How does booking work?</summary><p>Choose what you need, pick an open arrival time, and add your details. You'll get an email with your booking number right away.</p></details>
+          <details><summary>Can I change or cancel?</summary><p>Yes. Cancel online with your booking number and cancel code, at least 4 hours before your visit. Then book a new time.</p></details>
+          <details><summary>What should I do before you arrive?</summary><p>Clear a path to your furnace or air handler and the outdoor unit, and keep pets in another room if you can.</p></details>
+          <details><summary>Do you work on homes and businesses?</summary><p>Yes. Tell the booking assistant which one when you book.</p></details>
+          <details><summary>What if it's an emergency?</summary><p>If you smell gas, leave the building and call your gas company or 911 from outside. For no heat or no cooling, book the earliest open time.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="wrap cta__in">
+        <h2>Ready to get comfortable again?</h2>
+        <p>Book your visit in about a minute.</p>
+        <a class="btn btn--hot btn--lg" href="#book" data-book>Book a visit</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__in">
+      <div>
+        <a class="brand brand--light" href="#top"><img src="logo.svg" alt="" width="36" height="36"><span class="brand__name">Johnson's<small>HVAC Service</small></span></a>
+        <p>Heating, cooling and air quality, booked online.</p>
+      </div>
+      <nav aria-label="Footer">
+        <a href="#services">Services</a>
+        <a href="#book">Book a visit</a>
+        <a href="#tips">Quick fixes</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <p class="footer__small">© <span data-year>2026</span> Johnson's HVAC Service. Website created by <a href="https://ainova.to" target="_blank" rel="noopener">ainova.to</a>.</p>
+    </div>
+  </footer>
+
+  <div class="mobile-bar">
+    <a class="btn btn--ghost-dark" data-phone hidden>Call</a>
+    <a class="btn btn--hot" href="#book" data-book>Book a visit</a>
+  </div>
+  <script src="agent.js" defer></script>
+  <script src="preview-lock.js" defer></script>
+</body>
+</html>

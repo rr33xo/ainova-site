@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 34" width="412" height="34" font-family="Arial, Helvetica, sans-serif" font-weight="700">
+  <title>Visa, Mastercard, American Express, Discover, Apple Pay, Cash App Pay, Klarna</title>
+  <defs><clipPath id="m"><circle cx="91" cy="17" r="9"/></clipPath></defs>
+  <g fill="#fff" stroke="#d9d4e6">
+    <rect x=".5" y=".5" width="52" height="33" rx="5"/>
+    <rect x="60.5" y=".5" width="52" height="33" rx="5"/>
+    <rect x="180.5" y=".5" width="52" height="33" rx="5"/>
+    <rect x="240.5" y=".5" width="52" height="33" rx="5"/>
+    <rect x="359.5" y=".5" width="52" height="33" rx="5"/>
+  </g>
+  <text x="26.5" y="23" font-size="17" font-style="italic" fill="#1a1f71" text-anchor="middle">VISA</text>
+  <circle cx="79" cy="17" r="9" fill="#eb001b"/>
+  <circle cx="91" cy="17" r="9" fill="#f79e1b"/>
+  <circle cx="79" cy="17" r="9" fill="#ff5f00" clip-path="url(#m)"/>
+  <rect x="120" width="53" height="34" rx="5" fill="#016fd0"/>
+  <text x="146.5" y="16" font-size="9" fill="#fff" text-anchor="middle">AMERICAN</text>
+  <text x="146.5" y="26" font-size="9" fill="#fff" text-anchor="middle">EXPRESS</text>
+  <text x="206.5" y="21" font-size="8.2" fill="#231f20" text-anchor="middle" letter-spacing=".1">DISCOVER</text>
+  <rect x="184" y="25" width="45" height="3" rx="1.5" fill="#f58220"/>
+  <g transform="translate(246 9) scale(.65)" fill="#000"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></g>
+  <text x="263" y="23" font-size="14" fill="#000">Pay</text>
+  <rect x="300" width="52" height="34" rx="5" fill="#00d632"/>
+  <text x="326" y="24" font-size="19" fill="#fff" text-anchor="middle">$</text>
+  <rect x="359" width="53" height="34" rx="5" fill="#ffb3c7"/>
+  <text x="385.5" y="22" font-size="12.5" fill="#000" text-anchor="middle">Klarna</text>
+</svg>
