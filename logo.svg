@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" role="img" aria-label="VFM">
+  <defs>
+    <linearGradient id="topLeft" gradientUnits="userSpaceOnUse" x1="130" y1="270" x2="520" y2="50">
+      <stop offset="0" stop-color="#4a1ab8"/><stop offset=".7" stop-color="#6d3be0"/><stop offset="1" stop-color="#a98cf5"/>
+    </linearGradient>
+    <linearGradient id="topRight" gradientUnits="userSpaceOnUse" x1="430" y1="30" x2="990" y2="300">
+      <stop offset="0" stop-color="#efe9ff"/><stop offset=".35" stop-color="#c4adff"/><stop offset=".62" stop-color="#e2d6ff"/><stop offset="1" stop-color="#9f78fa"/>
+    </linearGradient>
+    <linearGradient id="column" gradientUnits="userSpaceOnUse" x1="900" y1="340" x2="1015" y2="780">
+      <stop offset="0" stop-color="#7c48ee"/><stop offset=".55" stop-color="#9f78fa"/><stop offset="1" stop-color="#b79bfd"/>
+    </linearGradient>
+    <linearGradient id="mArm" gradientUnits="userSpaceOnUse" x1="950" y1="280" x2="780" y2="690">
+      <stop offset="0" stop-color="#b79bfd"/><stop offset=".6" stop-color="#a783fb"/><stop offset="1" stop-color="#c7b2ff"/>
+    </linearGradient>
+    <linearGradient id="mLeg" gradientUnits="userSpaceOnUse" x1="670" y1="380" x2="770" y2="650">
+      <stop offset="0" stop-color="#c9b6ff"/><stop offset="1" stop-color="#7f4cf0"/>
+    </linearGradient>
+    <linearGradient id="bottomRight" gradientUnits="userSpaceOnUse" x1="990" y1="770" x2="520" y2="1050">
+      <stop offset="0" stop-color="#b79bfd"/><stop offset=".55" stop-color="#8d62f4"/><stop offset="1" stop-color="#dcd0ff"/>
+    </linearGradient>
+    <linearGradient id="bottomLeft" gradientUnits="userSpaceOnUse" x1="90" y1="780" x2="590" y2="1060">
+      <stop offset="0" stop-color="#34108a"/><stop offset=".55" stop-color="#3f149f"/><stop offset="1" stop-color="#7a4cea"/>
+    </linearGradient>
+    <linearGradient id="vLeft" gradientUnits="userSpaceOnUse" x1="120" y1="260" x2="250" y2="850">
+      <stop offset="0" stop-color="#5a24cf"/><stop offset=".43" stop-color="#7c42e8"/><stop offset=".44" stop-color="#4a1ab8"/><stop offset="1" stop-color="#34108a"/>
+    </linearGradient>
+    <linearGradient id="vRight" gradientUnits="userSpaceOnUse" x1="270" y1="880" x2="660" y2="300">
+      <stop offset="0" stop-color="#4a1ab8"/><stop offset=".48" stop-color="#7d55ea"/><stop offset=".72" stop-color="#d9ccff"/><stop offset="1" stop-color="#f6f2ff"/>
+    </linearGradient>
+    <linearGradient id="bar" gradientUnits="userSpaceOnUse" x1="520" y1="400" x2="760" y2="300">
+      <stop offset="0" stop-color="#8f6bea"/><stop offset=".55" stop-color="#e8e0ff"/><stop offset="1" stop-color="#cdb9ff"/>
+    </linearGradient>
+    <linearGradient id="cross" gradientUnits="userSpaceOnUse" x1="445" y1="600" x2="680" y2="540">
+      <stop offset="0" stop-color="#8f6bea"/><stop offset=".5" stop-color="#ece6ff"/><stop offset="1" stop-color="#c4adff"/>
+    </linearGradient>
+    <linearGradient id="leg" gradientUnits="userSpaceOnUse" x1="640" y1="620" x2="560" y2="810">
+      <stop offset="0" stop-color="#b79bfd"/><stop offset="1" stop-color="#ece6ff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Upper left of the hexagon -->
+  <path fill="url(#topLeft)" d="M112 245 L420 62 Q470 34 520 34 L560 78 Q520 72 490 92 L225 248 Q196 266 192 292 Z"/>
+
+  <!-- Upper right of the hexagon, folding over the apex -->
+  <path fill="url(#topRight)" d="M422 58 L490 20 Q540 -10 592 20 L952 232 Q1004 262 1015 330 L885 292 Q884 268 858 252 L568 84 Q545 66 512 76 Q472 66 422 58 Z"/>
+
+  <!-- Right column -->
+  <path fill="url(#column)" d="M1015 330 L1015 750 Q1015 806 968 836 L880 888 Q895 860 895 820 L895 560 Z"/>
+
+  <!-- Lower right of the hexagon -->
+  <path fill="url(#bottomRight)" d="M1015 750 Q1015 806 968 836 L640 1030 L520 1006 Q552 1006 582 988 L862 826 Q895 806 895 762 Z"/>
+
+  <!-- Lower left of the hexagon, running under the V -->
+  <path fill="url(#bottomLeft)" d="M65 700 L65 756 Q65 806 112 834 L488 1056 Q540 1088 594 1056 L650 1024 Q600 1022 545 1000 L150 772 Q135 760 135 736 Z"/>
+
+  <!-- Left column and left arm of the V -->
+  <path fill="url(#vLeft)" d="M65 345 Q65 270 118 240 L190 270 L305 662 L236 852 L135 556 L135 760 L65 720 Z"/>
+
+  <!-- Left arm of the M, behind the top bar -->
+  <path fill="url(#mLeg)" d="M628 416 L722 408 L744 345 L800 490 L736 650 Q716 628 702 594 Z"/>
+
+  <!-- Right arm and rounded base of the M -->
+  <path fill="url(#mArm)" d="M885 292 L1015 330 L876 620 Q842 700 790 700 Q746 700 724 646 Z"/>
+
+  <!-- F crossbar and leg -->
+  <path fill="url(#leg)" d="M586 630 L648 630 L697 612 L640 806 L514 806 Z"/>
+  <path fill="url(#cross)" d="M490 518 L680 518 L646 634 L444 634 Z"/>
+
+  <!-- Right arm of the V, rising into the F -->
+  <path fill="url(#vRight)" d="M236 852 L402 372 Q432 296 486 296 L600 296 L590 412 L548 416 Q522 420 510 452 L360 884 Q352 916 386 934 L524 1012 Z"/>
+
+  <!-- F top bar -->
+  <path fill="url(#bar)" d="M578 296 L758 296 L720 410 L548 416 Q528 418 522 432 L542 352 Q552 306 578 296 Z"/>
+</svg>
