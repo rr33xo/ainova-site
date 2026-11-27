@@ -1,0 +1,309 @@
+/* Scenes: the cinematic 3D scroll sections on the home page, plus the 3D reveal and tilt used site-wide.
+   Everything here reads as a plain, still layout until public/scenes.js adds .is-3d (it never does when
+   the visitor has turned motion off). scenes.js only writes transform and opacity, once per frame. */
+
+:root { --scene-bg: #0c0520; --scene-ink: #160934; --head: 74px; }
+.scene-title { font-size: clamp(2.3rem, 5.4vw, 4.6rem); line-height: 1; letter-spacing: -.025em; color: inherit; }
+.scene-title em, .build h1 em { font-family: "Instrument Serif", Georgia, "Times New Roman", serif; font-style: italic; font-weight: 400; letter-spacing: -.01em; color: var(--lilac); }
+.build, .aisle, .aistore, .sell3d { color: var(--white); }
+.build .eyebrow, .aisle .eyebrow, .aistore .eyebrow, .sell3d .eyebrow { color: var(--lilac); }
+.aisle .lead, .sell3d .lead, .build .lead { color: #e6dcff; }
+.aistore .ticks li::before, .sell3d .ticks li::before { background: var(--lilac); }
+
+/* ---------- Scene 1: the build. A sample site comes apart into its layers, then snaps back together. ---------- */
+.build { position: relative; background: radial-gradient(70% 60% at 72% 42%, #3a1588 0%, var(--ink) 52%, var(--scene-bg) 100%); }
+.build__pin { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); align-items: center; gap: 2rem 3rem; width: min(1240px, 100% - 2.5rem); margin-inline: auto; padding-block: clamp(2.5rem, 6vw, 4.5rem); }
+.build__copy { min-width: 0; position: relative; z-index: 3; }
+.build h1 { font-size: clamp(2.6rem, 5.6vw, 5rem); max-width: 10.5em; }
+.build__copy .lead { margin-top: 1.2rem; max-width: 31em; }
+.build__stage { position: relative; min-width: 0; aspect-ratio: 3 / 2.1; perspective: 1600px; perspective-origin: 50% 40%; }
+.build__obj { position: absolute; left: 4%; top: 6%; width: 92%; aspect-ratio: 3 / 2; transform-style: preserve-3d; transform: rotateX(14deg) rotateY(-18deg); }
+.build__layer { position: absolute; inset: 0; transform-style: preserve-3d; }
+.build__layer--base { border-radius: 14px; overflow: hidden; background: #241048; box-shadow: 0 40px 90px rgba(5, 0, 20, .6), 0 0 0 1px rgba(255, 255, 255, .1); }
+.build__layer--base img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.build__layer.is-hot .build__glass, .build__layer--base.is-hot { box-shadow: 0 0 0 2px var(--lilac), 0 0 50px rgba(160, 110, 255, .65); }
+.build__glass { position: absolute; display: grid; gap: .3rem; padding: clamp(.55rem, 1.3vw, .95rem); border-radius: 12px; background: rgba(22, 9, 52, .62); border: 1px solid rgba(255, 255, 255, .22); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); color: #fff; font-size: clamp(.62rem, 1vw, .82rem); line-height: 1.3; box-shadow: 0 18px 40px rgba(5, 0, 20, .45); transition: box-shadow .4s; }
+.build__glass small { color: var(--lilac); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-size: .85em; }
+.build__words { left: 5%; top: 7%; width: 42%; }
+.build__words b { font-family: var(--display); font-size: clamp(1rem, 2.4vw, 2rem); line-height: 1; }
+.build__words i { justify-self: start; margin-top: .3rem; padding: .35em .9em; border-radius: 999px; background: #fff; color: var(--deep); font-style: normal; font-weight: 700; }
+.build__book { right: 6%; top: 9%; width: 30%; }
+.build__book span { padding: .3em .6em; border-radius: 7px; background: rgba(255, 255, 255, .1); text-align: center; font-weight: 600; }
+.build__book .is-picked { background: var(--violet); }
+.build__chat { right: 7%; bottom: 8%; width: 42%; }
+.build__chat small i { display: inline-block; width: .55em; height: .55em; border-radius: 50%; background: #39e39a; margin-right: .25em; }
+.build__chat p { margin: 0; padding: .35em .65em; border-radius: 10px 10px 10px 3px; background: rgba(255, 255, 255, .12); max-width: 92%; }
+.build__chat p.me { justify-self: end; border-radius: 10px 10px 3px 10px; background: var(--violet); }
+.build__chat p.done { background: rgba(57, 227, 154, .2); color: #c9ffe6; font-weight: 700; }
+.build__shadow { position: absolute; left: 12%; right: 12%; bottom: -2%; height: 14%; border-radius: 50%; background: radial-gradient(closest-side, rgba(150, 90, 255, .5), rgba(150, 90, 255, .18) 55%, transparent); }
+.build__steps { grid-column: 1 / -1; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+.build__steps li { padding: 1rem 1.1rem; border-radius: 14px; background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .12); color: #d9ccff; font-size: .95rem; }
+.build__steps span { display: block; font-family: var(--display); font-weight: 800; color: var(--lilac); font-size: .85rem; letter-spacing: .1em; }
+.build__steps b { display: block; color: #fff; font-family: var(--display); font-size: 1.2rem; margin: .2rem 0 .25rem; }
+.build__end, .build__hint { display: none; }
+.build__note { grid-column: 1 / -1; margin: 0; font-size: .8rem; color: #b9a8e8; }
+
+.build.is-3d { height: 420vh; }
+.build.is-3d .build__pin { position: sticky; top: var(--head); height: calc(100vh - var(--head)); width: 100%; max-width: none; margin: 0; padding: 0; display: block; overflow: hidden; overflow: clip; }
+@supports (height: 100svh) { .build.is-3d .build__pin { height: calc(100svh - var(--head)); } }
+.build.is-3d .build__copy { position: absolute; left: max(1.25rem, calc((100% - 1200px) / 2)); top: 50%; width: min(560px, 44%); transform: translateY(-50%); will-change: transform, opacity; }
+.build.is-3d .build__stage { position: absolute; inset: 0; aspect-ratio: auto; }
+.build.is-3d .build__obj { left: 50%; top: 50%; width: min(700px, 48vw); margin-left: calc(min(700px, 48vw) / -2); margin-top: calc(min(700px, 48vw) / -3); transform: none; will-change: transform; }
+.build.is-3d .build__layer { will-change: transform; }
+.build.is-3d .build__shadow { left: 50%; top: 50%; bottom: auto; right: auto; width: min(640px, 44vw); height: 90px; margin-left: calc(min(640px, 44vw) / -2); will-change: transform, opacity; }
+.build.is-3d .build__steps { position: absolute; left: max(1.25rem, calc((100% - 1200px) / 2)); top: 50%; width: min(360px, 30%); transform: translateY(-50%); grid-template-columns: 1fr; gap: .7rem; opacity: 0; pointer-events: none; }
+.build.is-3d .build__steps li { opacity: .38; transform: translateX(-10px); transition: opacity .45s, transform .45s, background .45s, border-color .45s; }
+.build.is-3d .build__steps li.is-on { opacity: 1; transform: none; background: rgba(124, 66, 232, .28); border-color: rgba(205, 185, 255, .6); }
+.build.is-3d .build__end { display: block; position: absolute; left: 0; right: 0; bottom: 9%; margin: 0; padding-inline: 1.25rem; text-align: center; font-family: var(--display); font-weight: 800; font-size: clamp(1.8rem, 4.4vw, 3.6rem); letter-spacing: -.02em; opacity: 0; }
+.build.is-3d .build__end em { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; font-style: italic; color: var(--lilac); }
+.build.is-3d .build__note { position: absolute; left: max(1.25rem, calc((100% - 1200px) / 2)); bottom: 1rem; }
+.build.is-3d .build__hint { display: block; position: absolute; left: 50%; bottom: 1.1rem; margin: 0 0 0 -2rem; width: 4rem; text-align: center; font-size: .72rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--lilac); }
+.build.is-3d .build__hint::after { content: ""; display: block; width: 1px; height: 28px; margin: .4rem auto 0; background: linear-gradient(var(--lilac), transparent); animation: hint-drop 1.6s ease-in-out infinite; transform-origin: top; }
+@keyframes hint-drop { 0% { transform: scaleY(0); opacity: 1; } 70% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
+
+/* ---------- Scene 2: the design store. The camera walks down an aisle of designs. ---------- */
+.aisle { position: relative; background: radial-gradient(60% 50% at 50% 60%, #2a1066 0%, var(--scene-ink) 55%, var(--scene-bg) 100%); }
+.aisle__pin { padding-block: clamp(3rem, 7vw, 5rem); }
+.aisle__head { text-align: center; display: grid; justify-items: center; }
+.aisle__head .lead { margin-top: .9rem; }
+.aisle__stage { width: min(1200px, 100% - 2.5rem); margin: 2.2rem auto 0; }
+.aisle__world { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: 1.2rem; }
+.aisle__floor { display: none; }
+.aisle__item { display: grid; gap: .55rem; color: #fff; text-decoration: none; }
+.aisle__frame { display: block; aspect-ratio: 3 / 2; border-radius: 12px; overflow: hidden; background: #241048; box-shadow: 0 0 0 1px rgba(255, 255, 255, .12), 0 20px 40px rgba(0, 0, 0, .35); }
+.aisle__frame img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+.aisle__cap { display: grid; }
+.aisle__cap b { font-family: var(--display); font-size: 1.1rem; }
+.aisle__cap small { color: #bfaff0; }
+.aisle__tag, .aisle__count { display: none; }
+
+.aisle.is-3d { height: calc(var(--n, 14) * 34vh + 100vh); }
+.aisle.is-3d .aisle__pin { position: sticky; top: var(--head); height: calc(100vh - var(--head)); padding: 0; overflow: hidden; overflow: clip; }
+@supports (height: 100svh) { .aisle.is-3d .aisle__pin { height: calc(100svh - var(--head)); } }
+.aisle.is-3d .aisle__head { position: absolute; left: 0; right: 0; top: clamp(1.2rem, 4vh, 2.6rem); z-index: 3; pointer-events: none; }
+.aisle.is-3d .aisle__head .lead { display: none; }
+.aisle.is-3d .aisle__head .scene-title { font-size: clamp(1.9rem, 4.2vw, 3.4rem); }
+.aisle.is-3d .aisle__stage { position: absolute; inset: 0; width: auto; margin: 0; perspective: 1000px; perspective-origin: 50% 42%; }
+.aisle.is-3d .aisle__world { position: absolute; left: 50%; top: 52%; width: 0; height: 0; display: block; transform-style: preserve-3d; }
+.aisle.is-3d .aisle__floor { display: block; position: absolute; left: -2000px; top: 0; width: 4000px; height: 6000px; transform-origin: 50% 0; background:
+  linear-gradient(90deg, transparent 49.6%, rgba(205, 185, 255, .45) 50%, transparent 50.4%) 0 0 / 100% 100%,
+  repeating-linear-gradient(0deg, rgba(205, 185, 255, .16) 0 2px, transparent 2px 120px),
+  repeating-linear-gradient(90deg, rgba(205, 185, 255, .08) 0 2px, transparent 2px 160px);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 85%); mask-image: linear-gradient(180deg, #000 0%, transparent 85%); will-change: transform; }
+.aisle.is-3d .aisle__item { position: absolute; left: 0; top: 0; width: var(--cw, 400px); margin-left: calc(var(--cw, 400px) / -2); margin-top: calc(var(--cw, 400px) / -3); pointer-events: none; will-change: transform, opacity; backface-visibility: hidden; }
+.aisle.is-3d .aisle__item.is-front { pointer-events: auto; }
+.aisle.is-3d .aisle__frame { box-shadow: 0 0 0 1px rgba(255, 255, 255, .16), 0 30px 60px rgba(0, 0, 0, .55); transition: box-shadow .4s; }
+.aisle.is-3d .aisle__item.is-front .aisle__frame { box-shadow: 0 0 0 2px var(--lilac), 0 0 60px rgba(150, 100, 255, .55), 0 30px 60px rgba(0, 0, 0, .55); }
+.aisle.is-3d .aisle__cap { opacity: 0; transition: opacity .35s; }
+.aisle.is-3d .aisle__item.is-front .aisle__cap { opacity: 1; }
+.aisle.is-3d .aisle__tag { display: flex; position: absolute; left: 0; right: 0; bottom: 6rem; z-index: 3; align-items: center; justify-content: space-between; gap: 1rem 2rem; flex-wrap: wrap; padding: 1rem 1.3rem; border-radius: 16px; background: rgba(22, 9, 52, .7); border: 1px solid rgba(205, 185, 255, .3); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+.aisle__tag h3 { font-size: clamp(1.4rem, 2.6vw, 2rem); }
+.aisle__kind { margin: 0; font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--lilac); }
+.aisle__style { margin: .1rem 0 0; color: #d9ccff; }
+.aisle__buy { display: flex; align-items: center; gap: .6rem 1.1rem; flex-wrap: wrap; }
+.aisle__price { margin: 0; color: #d9ccff; }
+.aisle__price b { color: #fff; font-size: 1.15rem; }
+.aisle__look { color: var(--lilac); font-weight: 700; text-decoration: none; }
+.aisle__look:hover { text-decoration: underline; }
+.aisle.is-3d .aisle__count { display: block; position: absolute; left: max(1.25rem, calc((100% - 1200px) / 2)); bottom: 2.2rem; z-index: 3; margin: 0; text-align: left; font-family: var(--display); font-weight: 700; letter-spacing: .12em; color: #bfaff0; font-size: .9rem; }
+.aisle.is-3d .aisle__count span { color: #fff; }
+.aisle__all { margin-left: 1rem; color: var(--lilac); font-family: var(--body); letter-spacing: .04em; }
+
+/* ---------- Scene 3: the AI store. Each service is a product box that turns on a pedestal. ---------- */
+.aistore { position: relative; background: radial-gradient(55% 50% at 30% 55%, #2c1170 0%, var(--scene-ink) 55%, var(--scene-bg) 100%); }
+.aistore__pin { padding-block: clamp(3rem, 7vw, 5rem) 1rem; }
+.aistore__head { margin-bottom: 2rem; }
+.aistore__stage { display: none; }
+.aistore__cards { width: min(1200px, 100% - 2.5rem); margin-inline: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 1.1rem; }
+.aistore__card { padding: 1.4rem; border-radius: 18px; background: rgba(255, 255, 255, .06); border: 1px solid rgba(205, 185, 255, .25); display: grid; align-content: start; gap: .2rem; }
+.aistore__n { margin: 0; font-family: var(--display); font-weight: 700; font-size: .8rem; letter-spacing: .14em; color: var(--lilac); }
+.aistore__card h3 { font-size: clamp(1.5rem, 2.6vw, 2.3rem); margin-top: .2rem; }
+.aistore__sub { margin: .3rem 0 0; color: #d9ccff; }
+.aistore__card .ticks { margin-top: .9rem; color: #efe9ff; font-size: .98rem; }
+.aistore__price { margin: 1.1rem 0 0; font-family: var(--display); font-weight: 800; font-size: clamp(2rem, 3.6vw, 3rem); line-height: 1; }
+.aistore__price small { font-family: var(--body); font-weight: 600; font-size: 1rem; color: #d9ccff; }
+.aistore__fine { margin: .3rem 0 1rem; color: #bfaff0; font-size: .92rem; }
+.aistore__card .btn { justify-self: start; }
+.aistore-how { background: var(--scene-bg); color: var(--white); padding-block: clamp(2.5rem, 6vw, 4rem); }
+.aistore__how { font-size: clamp(1.4rem, 2.6vw, 2rem); margin-bottom: 1.2rem; }
+.aistore-how .aias__steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.aistore-how .aias__steps li { padding: 1.3rem; border-radius: 16px; background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .12); color: #d9ccff; }
+.aistore-how .aias__steps h3 { color: #fff; font-size: 1.25rem; margin: .5rem 0 .3rem; }
+.aistore-how .aias__num { display: inline-grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; background: var(--violet); color: #fff; font-weight: 800; }
+.aistore-how .aias__fine { margin-top: 1.2rem; color: #bfaff0; font-size: .92rem; }
+
+.aistore.is-3d .aistore__pin { position: sticky; top: var(--head); height: calc(100vh - var(--head)); padding: 0; overflow: hidden; overflow: clip; }
+@supports (height: 100svh) { .aistore.is-3d .aistore__pin { height: calc(100svh - var(--head)); } }
+.aistore.is-3d { height: calc(var(--n, 4) * 85vh + 100vh); }
+.aistore.is-3d .aistore__head { position: absolute; left: 0; right: 0; top: clamp(1.2rem, 4vh, 2.6rem); margin-block: 0; z-index: 2; pointer-events: none; }
+.aistore.is-3d .aistore__head .scene-title { font-size: clamp(1.9rem, 4.2vw, 3.4rem); }
+.aistore.is-3d .aistore__stage { display: block; position: absolute; left: 0; top: 0; bottom: 0; width: 52%; perspective: 1100px; perspective-origin: 50% 38%; }
+.aistore.is-3d .aistore__cards { position: absolute; right: max(1.25rem, calc((100% - 1200px) / 2)); top: 50%; width: min(460px, 40%); height: 0; margin: 0; display: block; }
+.aistore.is-3d .aistore__card { position: absolute; left: 0; right: 0; top: 0; transform: translateY(-40%); background: rgba(22, 9, 52, .66); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); opacity: 0; pointer-events: none; will-change: transform, opacity; }
+.aistore.is-3d .aistore__card.is-on { pointer-events: auto; }
+.aistore__pedestal { position: absolute; left: 50%; top: calc(44% + var(--s) * .62 - var(--pd) / 2); width: var(--pd); aspect-ratio: 1; margin-left: calc(var(--pd) / -2); border-radius: 50%; transform: rotateX(76deg); background: radial-gradient(closest-side, rgba(168, 120, 255, .65), rgba(91, 33, 214, .25) 60%, transparent), repeating-radial-gradient(circle, transparent 0 18px, rgba(205, 185, 255, .25) 18px 20px); box-shadow: 0 0 80px rgba(124, 66, 232, .6); }
+.aistore.is-3d .aistore__stage { --s: clamp(150px, 17vw, 240px); --pd: clamp(240px, 26vw, 360px); }
+.aistore__box { position: absolute; left: 50%; top: 44%; width: var(--s); height: var(--s); margin: calc(var(--s) / -2) 0 0 calc(var(--s) / -2); transform-style: preserve-3d; will-change: transform; }
+.aistore__box .cube__f { opacity: var(--o, 0); }
+
+/* A cube with six faces. Used by the AI store and the mini 3D tiles. */
+.cube { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; --half: calc(var(--s, 220px) / 2); }
+.cube__f { position: absolute; inset: 0; display: grid; place-items: center; align-content: center; gap: .3rem; border-radius: 14px; color: #fff; text-align: center; background: linear-gradient(145deg, var(--c1, #7c42e8), var(--c2, #3a138f)); border: 1px solid rgba(255, 255, 255, .28); box-shadow: inset 0 0 40px rgba(255, 255, 255, .08); backface-visibility: hidden; }
+.cube__f b { font-family: var(--display); font-weight: 800; font-size: calc(var(--s, 220px) * .3); line-height: 1; }
+.cube__f small { font-weight: 700; font-size: calc(var(--s, 220px) * .07); letter-spacing: .04em; padding-inline: .6rem; }
+.cube__f--front { transform: translateZ(var(--half)); }
+.cube__f--back { transform: rotateY(180deg) translateZ(var(--half)); }
+.cube__f--right { transform: rotateY(90deg) translateZ(var(--half)); filter: brightness(.78); }
+.cube__f--left { transform: rotateY(-90deg) translateZ(var(--half)); filter: brightness(.78); }
+.cube__f--top { transform: rotateX(90deg) translateZ(var(--half)); filter: brightness(1.18); }
+.cube__f--bottom { transform: rotateX(-90deg) translateZ(var(--half)); filter: brightness(.5); }
+.cube__f--left small, .cube__f--right small { letter-spacing: .3em; opacity: .85; }
+[data-tone="assistant"] { --c1: #8b52f5; --c2: #4b17b8; }
+[data-tone="care"] { --c1: #6a5cff; --c2: #26137a; }
+[data-tone="booking"] { --c1: #4c7dff; --c2: #3b1aa6; }
+[data-tone="follow"] { --c1: #c04ad6; --c2: #4a168f; }
+
+/* ---------- Selling 3D websites: three small looping scenes. ---------- */
+.sell3d { background: linear-gradient(180deg, var(--scene-bg), var(--ink)); padding-block: clamp(3.5rem, 8vw, 6rem); overflow: hidden; overflow: clip; }
+.sell3d__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2.5rem; align-items: center; }
+.sell3d__copy .lead { margin-top: 1rem; }
+.sell3d__copy .ticks { color: #efe9ff; }
+.sell3d__price { margin: 1.3rem 0 0; color: #d9ccff; }
+.sell3d__price b { color: #fff; font-size: 1.2rem; }
+.sell3d__tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .9rem; }
+.mini { margin: 0; display: grid; gap: .6rem; }
+.mini__scene { position: relative; aspect-ratio: 3 / 4; border-radius: 16px; background: radial-gradient(80% 60% at 50% 40%, #3a1588, #140832); border: 1px solid rgba(205, 185, 255, .25); perspective: 600px; overflow: hidden; }
+.mini figcaption { font-weight: 700; font-size: .92rem; color: #e6dcff; }
+.mini--spin .cube--mini { position: absolute; left: 50%; top: 45%; width: 80px; height: 80px; margin: -40px 0 0 -40px; --s: 80px; --c1: #8b52f5; --c2: #4b17b8; animation: mini-spin 7s linear infinite; }
+@keyframes mini-spin { from { transform: rotateX(-20deg) rotateY(0); } to { transform: rotateX(-20deg) rotateY(360deg); } }
+.mini--layers .mini__scene span { position: absolute; left: 50%; top: 50%; width: 62%; aspect-ratio: 1.3; margin: -24% 0 0 -31%; border-radius: 10px; border: 1px solid rgba(255, 255, 255, .35); transform: rotateX(58deg) rotateZ(-38deg); animation: mini-layer 4.2s ease-in-out infinite; }
+.mini--layers .mini__scene span:nth-child(1) { background: linear-gradient(145deg, #4c7dff, #26137a); --z: -34px; }
+.mini--layers .mini__scene span:nth-child(2) { background: rgba(139, 82, 245, .75); --z: 0px; }
+.mini--layers .mini__scene span:nth-child(3) { background: rgba(205, 185, 255, .55); --z: 34px; }
+@keyframes mini-layer { 0%, 100% { transform: rotateX(58deg) rotateZ(-38deg) translateZ(0); } 45%, 60% { transform: rotateX(58deg) rotateZ(-38deg) translateZ(var(--z)); } }
+.mini--walk .mini__scene span { position: absolute; left: 50%; top: 42%; width: 46%; aspect-ratio: 3 / 2; margin: -15% 0 0 -23%; border-radius: 7px; background: linear-gradient(145deg, #8b52f5, #3a138f); border: 1px solid rgba(255, 255, 255, .35); animation: mini-walk 4s linear infinite; opacity: 0; }
+.mini--walk .mini__scene span:nth-child(2) { animation-delay: -1s; background: linear-gradient(145deg, #4c7dff, #26137a); }
+.mini--walk .mini__scene span:nth-child(3) { animation-delay: -2s; background: linear-gradient(145deg, #c04ad6, #4a168f); }
+.mini--walk .mini__scene span:nth-child(4) { animation-delay: -3s; }
+.mini--walk .mini__scene span:nth-child(odd) { --x: -70%; --r: 40deg; }
+.mini--walk .mini__scene span:nth-child(even) { --x: 70%; --r: -40deg; }
+@keyframes mini-walk { 0% { transform: translate3d(var(--x), 0, -600px) rotateY(var(--r)); opacity: 0; } 25% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translate3d(calc(var(--x) * 2.4), 0, 260px) rotateY(var(--r)); opacity: 0; } }
+.sell3d:not(.is-playing) .mini * { animation-play-state: paused; }
+
+/* ---------- Site-wide: content rises into place in 3D as it scrolls in, and cards tilt under the pointer. ---------- */
+.rv { opacity: 0; transform: perspective(1000px) translate3d(0, 46px, 0) rotateX(16deg); transform-origin: 50% 100%; transition: opacity .9s cubic-bezier(.2, .7, .2, 1), transform 1s cubic-bezier(.2, .7, .2, 1); transition-delay: var(--rv-d, 0s); }
+.rv.is-in { opacity: 1; transform: none; }
+.tilt { transition: transform .5s cubic-bezier(.2, .7, .2, 1), box-shadow .5s; transform-style: preserve-3d; }
+.tilt.is-tilting { transition: transform .12s linear, box-shadow .3s; box-shadow: 0 24px 50px rgba(26, 11, 56, .22); }
+
+/* ---------- Phones and tablets ---------- */
+@media (max-width: 860px) {
+  .build__pin { grid-template-columns: 1fr; }
+  .build__steps { grid-template-columns: 1fr 1fr; }
+  .build.is-3d { height: 400vh; }
+  .build.is-3d .build__copy { left: 1.25rem; right: 1.25rem; top: 1.4rem; width: auto; transform: none; }
+  .build.is-3d .build h1, .build.is-3d h1 { font-size: clamp(2rem, 8.6vw, 2.8rem); }
+  .build.is-3d .build__copy .lead { font-size: 1.02rem; margin-top: .7rem; }
+  .build.is-3d .show__actions { margin-top: 1rem; }
+  .build.is-3d .show__trust { display: none; }
+  .build.is-3d .build__obj { width: 86vw; margin-left: -43vw; margin-top: -28.7vw; }
+  .build.is-3d .build__shadow { width: 80vw; margin-left: -40vw; }
+  .build.is-3d .build__steps { left: 1.25rem; right: 1.25rem; top: auto; bottom: 5.6rem; width: auto; transform: none; display: block; }
+  .build.is-3d .build__steps li { position: absolute; left: 0; right: 0; bottom: 0; opacity: 0; transform: translateY(10px); }
+  .build.is-3d .build__steps li.is-on { opacity: 1; transform: none; }
+  .build.is-3d .build__end { bottom: 22%; }
+  .build.is-3d .build__note { left: 1.25rem; right: auto; bottom: .6rem; max-width: calc(100% - 9.5rem); font-size: .72rem; }
+  .build.is-3d .build__hint { display: none; }
+  .build__glass { border-radius: 8px; -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(22, 9, 52, .86); }
+  .aistore.is-3d .aistore__card, .aisle.is-3d .aisle__tag { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(22, 9, 52, .9); }
+  .aisle.is-3d .aisle__stage { perspective: 700px; }
+  .aisle.is-3d .aisle__count { display: none; }
+  .aisle.is-3d .aisle__tag { left: .75rem; right: .75rem; bottom: 5rem; width: auto; padding: .8rem .95rem; gap: .5rem 1rem; }
+  .aisle__style { display: none; }
+  .aisle__buy .btn { min-height: 40px; padding: .4rem .9rem; font-size: .92rem; }
+  .aistore.is-3d .aistore__stage { left: 0; right: 0; width: auto; top: 7.5rem; bottom: auto; height: 34%; }
+  .aisle.is-3d .aisle__cap { display: none; }
+  .aistore.is-3d .aistore__cards { left: .75rem; right: .75rem; top: auto; bottom: 5rem; width: auto; height: auto; }
+  .aistore.is-3d .aistore__card { top: auto; bottom: 0; transform: none; padding: 1rem 1.1rem; }
+  .aistore.is-3d .aistore__card .ticks { gap: .3rem; font-size: .9rem; margin-top: .5rem; }
+  .aistore.is-3d .aistore__card .ticks li:nth-child(3) { display: none; }
+  .aistore.is-3d .aistore__price { margin-top: .6rem; font-size: 1.8rem; }
+  .aistore.is-3d .aistore__fine { margin-bottom: .6rem; }
+  .aistore.is-3d .aistore__sub { display: none; }
+  .aistore.is-3d .aistore__stage { --s: clamp(110px, 30vw, 150px); --pd: 58vw; }
+  .aistore-how .aias__steps { grid-template-columns: 1fr; }
+  .sell3d__grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 860px) {
+  .aisle.is-3d .aisle__world { top: 45%; }
+}
+@media (max-width: 860px) and (max-height: 760px) {
+  .aisle__kind { display: none; }
+  .aisle.is-3d .aisle__tag { padding: .7rem .85rem; }
+  .aisle__tag h3 { font-size: 1.25rem; }
+  .aisle.is-3d .aisle__world { top: 40%; }
+  .aistore.is-3d .aistore__stage { top: 7.6rem; height: 28%; --s: clamp(96px, 26vw, 120px); --pd: 50vw; }
+  .aistore.is-3d .aistore__card .ticks, .aistore.is-3d .aistore__fine { display: none; }
+  .aistore.is-3d .aistore__card h3 { font-size: 1.35rem; }
+  .aistore.is-3d .aistore__price { margin-bottom: .7rem; }
+}
+@media (max-width: 520px) {
+  .build__steps { grid-template-columns: 1fr; }
+  .sell3d__tiles { gap: .5rem; }
+  .mini figcaption { font-size: .8rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rv { opacity: 1; transform: none; transition: none; }
+  .mini * { animation: none !important; }
+  .build__hint::after { animation: none; }
+}
+
+/* The 3D offer on the Growth package card, which sits on a dark background. */
+.package--main .link { color: var(--lilac); }
+.package--main .link:hover { color: var(--white); }
+@media (max-width: 560px) {
+  .build.is-3d .build__end span, .build.is-3d .build__end em { display: block; }
+}
+
+/* Phones: the same scenes with less work per frame, so scrolling stays smooth on older phones too. */
+@media (pointer: coarse) {
+  .aisle__item { -webkit-tap-highlight-color: transparent; }
+  .aisle.is-3d .aisle__frame, .aisle.is-3d .aisle__item.is-front .aisle__frame { box-shadow: 0 0 0 1px rgba(205, 185, 255, .35); transition: none; }
+  .aisle.is-3d .aisle__item.is-front .aisle__frame { box-shadow: 0 0 0 2px var(--lilac); }
+  .build__layer--base { box-shadow: 0 0 0 1px rgba(255, 255, 255, .12); }
+  .build__glass { box-shadow: none; }
+  .build__layer.is-hot .build__glass, .build__layer--base.is-hot { box-shadow: 0 0 0 2px var(--lilac); }
+  .cube__f { box-shadow: none; }
+  .aistore__pedestal { box-shadow: none; }
+  .rv { transform: translate3d(0, 28px, 0); transition-duration: .6s, .7s; }
+  .build.is-3d .build__steps li { transition: opacity .3s, transform .3s; }
+}
+
+/* ---------- Phones: swipe through the aisle and the AI store ----------
+   The row scrolls sideways with the phone's own swipe and snapping; scenes.js only turns each piece in 3D. */
+.aisle.is-swipe .aisle__pin { padding-block: 2.6rem 2.2rem; }
+.aisle.is-swipe .aisle__head .lead { font-size: 1rem; }
+.aisle.is-swipe .aisle__head::after, .aistore.is-swipe .aistore__head::after { content: "Swipe to browse \2192"; margin-top: .7rem; font-size: .74rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--lilac); }
+.aistore.is-swipe .aistore__head { display: grid; justify-items: center; text-align: center; margin-bottom: 0; }
+.aisle.is-swipe .aisle__stage { width: auto; margin: .6rem 0 0; }
+.aisle.is-swipe .aisle__world, .aistore.is-swipe .aistore__cards { position: relative; display: flex; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.aisle.is-swipe .aisle__world::-webkit-scrollbar, .aistore.is-swipe .aistore__cards::-webkit-scrollbar { display: none; }
+.aisle.is-swipe .aisle__world { --sw: min(72vw, 340px); gap: .35rem; padding: 1.4rem calc(50% - var(--sw) / 2) 1.2rem; }
+.aisle.is-swipe .aisle__floor { display: none; }
+.aisle.is-swipe .aisle__item { flex: 0 0 var(--sw); scroll-snap-align: center; will-change: transform, opacity; -webkit-tap-highlight-color: transparent; }
+.aisle.is-swipe .aisle__frame { box-shadow: 0 0 0 1px rgba(205, 185, 255, .3); }
+.aisle.is-swipe .aisle__item.is-front .aisle__frame { box-shadow: 0 0 0 2px var(--lilac); }
+.aisle.is-swipe .aisle__cap { opacity: .5; transition: opacity .3s; }
+.aisle.is-swipe .aisle__item.is-front .aisle__cap { opacity: 1; }
+.aisle.is-swipe .aisle__tag { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem 1rem; width: auto; margin: 0 .75rem; padding: .85rem 1rem; border-radius: 16px; background: rgba(22, 9, 52, .9); border: 1px solid rgba(205, 185, 255, .3); }
+.aisle.is-swipe .aisle__style { display: none; }
+.aisle.is-swipe .aisle__count { display: block; margin: 1rem 0 0; padding-inline: 1.75rem; text-align: left; font-family: var(--display); font-weight: 700; letter-spacing: .12em; color: #bfaff0; font-size: .88rem; }
+.aisle.is-swipe .aisle__count span { color: #fff; }
+.aistore.is-swipe .aistore__pin { padding-block: 2.6rem 1.8rem; }
+.aistore.is-swipe .aistore__stage { display: block; position: relative; height: 200px; overflow: hidden; perspective: 900px; perspective-origin: 50% 38%; --s: 112px; --pd: 190px; }
+.aistore.is-swipe .aistore__cards { --cw: min(86vw, 420px); gap: .75rem; width: auto; margin: 0; padding: .4rem calc(50% - var(--cw) / 2) 1rem; }
+.aistore.is-swipe .aistore__card { flex: 0 0 var(--cw); scroll-snap-align: center; scroll-snap-stop: always; padding: 1.1rem 1.15rem; opacity: .5; transition: opacity .3s, border-color .3s; -webkit-tap-highlight-color: transparent; }
+.aistore.is-swipe .aistore__card.is-on { opacity: 1; border-color: rgba(205, 185, 255, .65); }
+.aistore.is-swipe .aistore__card .ticks { font-size: .92rem; }
+.aistore.is-swipe .aistore__price { font-size: 1.9rem; }
+@media (pointer: coarse) { .build.is-3d { height: 300vh; } }
